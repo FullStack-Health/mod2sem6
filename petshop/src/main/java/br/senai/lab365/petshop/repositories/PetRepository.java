@@ -1,32 +1,30 @@
 package br.senai.lab365.petshop.repositories;
 
-
 import br.senai.lab365.petshop.models.Pet;
-import org.springframework.stereotype.Repository;
-
+import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class PetRepository {
 
-    private static List<Pet> pets;
-    private static int ultimoId;
+  private static final List<Pet> pets = new ArrayList<>();
+  private static int ultimoId;
 
-    public List<Pet> listar() {
-        return pets;
-    }
+  public List<Pet> listar() {
+    return pets;
+  }
 
-    public void adicionarPet(Pet pet) {
-        pet.setId(++ultimoId);
-        pets.add(pet);
-    }
+  public void adicionarPet(Pet pet) {
+    pet.setId(++ultimoId);
+    pets.add(pet);
+  }
 
-    public void removerPet(Pet pet) {
-        pets.remove(pet);
-    }
+  public void removerPet(Pet pet) {
+    pets.remove(pet);
+  }
 
-    public Pet buscar(int id) {
-        return pets.stream().filter(pet -> id == pet.getId()).findFirst().orElse(null);
-    }
-
+  public Pet buscar(int id) {
+    return pets.stream().filter(pet -> id == pet.getId()).findFirst().orElse(null);
+  }
 }
